@@ -21,7 +21,7 @@
 
       <el-button type="info" @click="withdrawn()" style="float: right;">撤销</el-button>
     </div>
-    <el-table ref="multipleTableRef" :data="showData.data.filter(x => !x.delete)" stripe
+    <el-table ref="multipleTableRef" :data="showData.data.filter(x => !x.delete).slice((cpage - 1)*5, (cpage - 1)*5 + 5)" stripe
       @selection-change="handleSelectionChange">
       <el-table-column type="selection" align="center" width="55" />
       <el-table-column property="name" label="姓名" align="center" width="80" />
@@ -37,6 +37,7 @@
       </el-table-column>
     </el-table>
     <el-button type="danger" @click="multiDelete()" style="float: left; margin-top:10px">批量删除</el-button>
+    <el-pagination background layout="prev, pager, next" style="float: right; margin-top:10px" :page-size="5" :total="showData.data.filter(x => !x.delete).length" :current-page="cpage" @update:current-page="handleCurrentChange" />
   </section>
 
   <!-- 新建/编辑用户对话框 -->
@@ -145,10 +146,20 @@ const tableData = cacheData ? reactive<User[]>(JSON.parse(cacheData)) : reactive
     sex: '女',
     phone: '13123454123',
     address: '广东省广州市海珠区地区5',
-    delete: 1
+    delete: 0
+  },
+  {
+    id: 5,
+    name: '老八',
+    age: 23,
+    sex: '男',
+    phone: '14564541213',
+    address: '广东省广州市海珠区地区6',
+    delete: 0
   },
 ])
 const keywords = ref("")
+
 
 // 删除
 const deleteData = (user: User) => {
@@ -307,9 +318,16 @@ const search = () => {
   }
 }
 
+// 监听刷新
 window.addEventListener("beforeunload", () => {
   sessionStorage.setItem("tableData", JSON.stringify(toRaw(tableData)))
 })
+
+// 分页
+const cpage = ref(1)
+const handleCurrentChange = (val:number) => {
+  cpage.value = val
+}
 </script>
 
 <style scoped lang="less">
