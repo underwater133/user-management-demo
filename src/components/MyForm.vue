@@ -104,46 +104,46 @@ const cacheData = sessionStorage.getItem("tableData")
 const tableData = cacheData ? reactive<User[]>(JSON.parse(cacheData)) : reactive<User[]>([
   {
     id: 0,
-    name: 'Tom',
+    name: '张三',
     age: 18,
     sex: '男',
-    phone: '12345678910',
+    phone: '13226112341',
     address: '广东省广州市天河区地区1',
     delete: 0
   },
   {
     id: 1,
-    name: 'Tom',
+    name: '李四',
     age: 19,
     sex: '男',
-    phone: '12345678910',
+    phone: '14567112341',
     address: '广东省广州市番禺区地区2',
     delete: 0
   },
   {
     id: 2,
-    name: 'Tom',
+    name: '王五',
     age: 20,
     sex: '男',
-    phone: '12345678910',
+    phone: '1388654241',
     address: '广东省广州市花都区地区3',
     delete: 0
   },
   {
     id: 3,
-    name: 'Tom',
+    name: '刘六',
     age: 21,
     sex: '女',
-    phone: '12345678910',
+    phone: '13123465341',
     address: '广东省广州市越秀区地区4',
     delete: 0
   },
   {
     id: 4,
-    name: 'Tom',
+    name: '恩七',
     age: 22,
-    sex: '男',
-    phone: '12345678910',
+    sex: '女',
+    phone: '13123454123',
     address: '广东省广州市海珠区地区5',
     delete: 1
   },
